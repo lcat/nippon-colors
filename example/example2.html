@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nippon colors</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="jquery.animate-colors-min.js"></script>
+    <style>
+    html{color:#000;background:#fff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+    body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53}
+    ::selection {
+        background: #e83015;
+        color: #fff;
+        text-shadow: none;
+    }
+    body {
+      background-image: url(../images/texture.png);
+      padding: 0;
+      text-align: center;
+      font-family: 'open sans';
+      margin: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }    
+    #gloss {
+      position: fixed;
+      width: 100%;
+      height: 478px;
+      background: url(/images/gloss.png) repeat-x;
+    }
+    .nippon{
+      width: 400px;
+      margin: 200px auto 0 auto;
+    }
+    #nipponName{
+      display: block;
+      text-align: center;
+      padding-top: 10px;
+      color: #FFF;
+      font-family: tahoma,arial;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    </style>
+</head>
+<body id="bgWrap">
+<p style="color: #fff; opacity: .5;">刷新看看...</p>
+<div class="nippon" style="display:none">
+     <a href="/nipponcolor"><img id="nipponImg" src="http://nipponcolors.com/images/title_220.png" alt=""></a>
+    <span id="nipponName"></span>
+</div>
+<script>
+    $.getJSON('../nipponcolor.json', function(data) {
+        var randomNum,
+            randomImg;
+        randomNum = Math.random();
+        randomNum = Math.round(randomNum * 250);
+        randomImg = '../images/title_' + data[randomNum].id + '.png';
+          
+        var randomColor = '#' + data[randomNum].color;
+        $('#bgWrap').animate({
+            backgroundColor: randomColor
+        }, 2000);
+
+        $('#nipponImg').attr('src', randomImg);
+
+        $('#nipponName').html(data[randomNum].name.toUpperCase());
+
+        $('.nippon').fadeIn(5000)
+
+
+    })
+</script>
+</body>
+</html>
