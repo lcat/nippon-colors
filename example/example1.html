@@ -24,8 +24,8 @@
         width: 192px;
         height: 80px;
         text-align: center;
-        line-height: 80px;
         font-size: 18px;
+        line-height: 40px;
     }
     </style>
 </head>
@@ -34,7 +34,7 @@
     $.getJSON('../nipponcolor.json', function(data) {
         var items = [];
         $.each(data, function(key, val) {
-            items.push('<li style="background:#' + val.color + '" >' + val.name.toUpperCase() + '</li>');
+            items.push('<li style="background:#' + val.color + '" >' + val.cname + "<br/>" +val.name.toUpperCase() + '</li>');
         });
 
         $('<ul/>', {
